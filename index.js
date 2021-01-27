@@ -4,6 +4,7 @@ const movie = require("./controllers/movie-controller");
 
 const app = express();
 
+app.use(express.json());
 app.use("/movie", movie);
 
 sequelize.sync();

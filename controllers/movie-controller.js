@@ -16,4 +16,20 @@ router.post("/", (req, res) => {
   );
 });
 
+router.delete("/:id", (req, res) => {
+  Movie.destroy({ where: { id: req.params.id } })
+    .then((result) => {
+      if (result) {
+        return res
+          .status(200)
+          .json({ message: `Successfully Deleted ${result}` });
+      }
+
+      res.json({ message: "Couldn't find specified movie to delete" });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 module.exports = router;
